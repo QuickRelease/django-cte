@@ -76,7 +76,10 @@ class CTECompiler(object):
 
         # Always use WITH RECURSIVE
         # https://www.postgresql.org/message-id/13122.1339829536%40sss.pgh.pa.us
-        sql = ["WITH RECURSIVE", ", ".join(ctes)] if ctes else []
+        # SQL Server (connection vendor of `microsoft`) will error if 
+        sql_begin = "WITH RECURSIVE" if connection.vendor != 'microsoft' else "WITH"
+
+        sql = [sql_begin, ", ".join(ctes)] if ctes else []
         base_sql, base_params = as_sql()
         sql.append(base_sql)
         params.extend(base_params)
