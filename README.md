@@ -3,6 +3,11 @@
 [![Build Status](https://travis-ci.org/dimagi/django-cte.png)](https://travis-ci.org/dimagi/django-cte)
 [![PyPI version](https://badge.fury.io/py/django-cte.svg)](https://badge.fury.io/py/django-cte)
 
+## Purpose of this Fork
+
+Adds support for SQL Server.
+`With.recursive` updated to omit `Recursive` keyword if the database is SQL Server (as it would result in a syntax error).
+
 ## Installation
 ```
 pip install django-cte
